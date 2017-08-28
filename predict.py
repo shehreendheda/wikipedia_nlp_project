@@ -23,6 +23,8 @@ knn_model = pickle.loads(r.get('wiki_knn_model'))
 pageid_title_df = pickle.loads(r.get('pageid_title_df'))
 
 # Preprocess new article text for prediction
+predict_text = [line.rstrip('\n') for line in open(args.predict)]
+predict_text = ','.join(predict_text)
 predict_lsa = preprocess_search_text(args.predict,lsa_vectorizer,fit_svd)
 
 # Predict the category of the new text and calculate confidence score of prediction
